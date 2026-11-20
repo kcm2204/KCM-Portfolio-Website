@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kan Char Ming · IT Student and Web Developer</title>
+<meta name="description" content="Portfolio of Kan Char Ming, a Bachelor of IT student at Sunway University looking for internships. Projects in PHP, MySQL, JavaScript and Scala.">
+<meta property="og:title" content="Kan Char Ming · IT Student and Web Developer">
+<meta property="og:description" content="Bachelor of IT student at Sunway University, open to internships.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kcm2204.github.io/">
+<meta property="og:image" content="https://kcm2204.github.io/assets/headshot.jpg">
+<meta name="theme-color" content="#faf7f2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e2a44'/%3E%3Ccircle cx='16' cy='16' r='6' fill='none' stroke='%23d4a24c' stroke-width='3'/%3E%3C/svg%3E">
+<script>
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') {
+      t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f2;
+    --surface: #ffffff;
+    --surface-2: #f3eee6;
+    --line: #e7e2d9;
+    --ink: #1f1f1f;
+    --ink-2: #4f4a45;
+    --muted: #6b6560;
+    --navy: #1e2a44;
+    --on-navy: #faf7f2;
+    --gold: #a8781f;
+    --gold-text: #8a5f12;
+    --shadow: 0 1px 2px rgba(30, 42, 68, .04), 0 4px 16px rgba(30, 42, 68, .05);
+    --ease: cubic-bezier(.2, .7, .2, 1);
+    --serif: "Fraunces", Georgia, "Times New Roman", serif;
+    --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1522;
+    --surface: #18202f;
+    --surface-2: #1f2838;
+    --line: #283347;
+    --ink: #ece8e1;
+    --ink-2: #c9c4bb;
+    --muted: #98a0b0;
+    --navy: #ece8e1;
+    --on-navy: #0f1522;
+    --gold: #d4a24c;
+    --gold-text: #d4a24c;
+    --shadow: none;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 16px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { margin: 0; font-family: var(--serif); font-weight: 500; color: var(--navy); }
+  p { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+
+  .wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .icon { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .mono { font-family: var(--mono); font-size: 13px; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+  .muted { color: var(--muted); }
+  .skip { position: absolute; left: -9999px; top: 8px; background: var(--surface); padding: 8px 12px; border-radius: 8px; z-index: 100; }
+  .skip:focus { left: 8px; }
+
+  /* Links: gold underline that fills on hover */
+  .link {
+    color: var(--gold-text);
+    text-decoration: none;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size .25s var(--ease);
+    padding-bottom: 2px;
+  }
+  .link:hover { background-size: 100% 1px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 44px; padding: 0 20px;
+    border-radius: 8px; border: 1px solid transparent;
+    font: 500 15px/1 var(--sans); text-decoration: none; cursor: pointer;
+    transition: background-color .15s var(--ease), border-color .15s var(--ease), color .15s var(--ease), transform .1s var(--ease);
+  }
+  .btn:active { transform: scale(.98); }
+  .btn-primary { background: var(--navy); color: var(--on-navy); }
+  .btn-primary:hover { background: #2b3a5c; }
+  :root[data-theme="dark"] .btn-primary:hover { background: #ffffff; }
+  .btn-secondary { background: transparent; color: var(--navy); border-color: var(--line); }
+  .btn-secondary:hover { border-color: var(--navy); }
+  .btn-sm { height: 36px; padding: 0 14px; font-size: 14px; }
+  .icon-btn {
+    display: inline-grid; place-items: center; width: 40px; height: 40px;
+    border-radius: 8px; border: 1px solid var(--line); background: transparent;
+    color: var(--ink-2); cursor: pointer; text-decoration: none;
+    transition: color .15s var(--ease), border-color .15s var(--ease);
+  }
+  .icon-btn:hover { color: var(--navy); border-color: var(--navy); }
+
+  /* Nav */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    -webkit-backdrop-filter: saturate(1.2) blur(8px);
+    backdrop-filter: saturate(1.2) blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--navy); }
+  .brand-mark {
+    display: grid; place-items: center; width: 36px; height: 36px; border-radius: 8px;
+    background: var(--navy); color: var(--on-navy);
+    font: 500 12px/1 var(--mono); letter-spacing: .04em;
+  }
+  .brand-name { font: 500 17px/1 var(--serif); }
+  .nav-links { display: flex; align-items: center; gap: 4px; }
+  .nav-links a {
+    position: relative; padding: 8px 12px; border-radius: 8px;
+    font-size: 14px; color: var(--ink-2); text-decoration: none;
+    transition: color .15s var(--ease), background-color .15s var(--ease);
+  }
+  .nav-links a:hover { color: var(--navy); background: var(--surface-2); }
+  .nav-links a[aria-current="true"] { color: var(--navy); }
+  .nav-links a[aria-current="true"]::after {
+    content: ""; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 2px; border-radius: 2px; background: var(--gold);
+  }
+  .nav-actions { display: flex; align-items: center; gap: 8px; margin-left: 12px; }
+  .menu-btn { display: none; }
+  .theme-btn .sun { display: none; }
+  :root[data-theme="dark"] .theme-btn .sun { display: block; }
+  :root[data-theme="dark"] .theme-btn .moon { display: none; }
+
+  /* Sections */
+  section { padding: 96px 0; }
+  section + section { border-top: 1px solid var(--line); }
+  .sec-head { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 40px; max-width: 640px; }
+  .sec-head h2 { font-size: 36px; line-height: 1.15; letter-spacing: -.01em; }
+  .sec-head p { color: var(--muted); }
+
+  /* Hero */
+  .hero { padding: 80px 0 96px; border-top: 0; }
+  .hero .wrap { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: center; }
+  .hero-kicker { color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+  .hero-kicker .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+  .hero h1 { font-size: clamp(48px, 7vw, 88px); line-height: 1; letter-spacing: -.025em; }
+  .hero-role { margin-top: 16px; font: 400 22px/1.3 var(--serif); color: var(--ink-2); }
+  .hero-lead { margin-top: 20px; max-width: 520px; font-size: 18px; color: var(--ink-2); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .hero-social { display: flex; gap: 8px; margin-top: 24px; }
+  .portrait { justify-self: end; position: relative; width: min(100%, 360px); aspect-ratio: 1; }
+  .portrait img {
+    width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+    border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--surface-2);
+  }
+  .portrait figcaption {
+    position: absolute; left: 0; bottom: 8%;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 10px 14px; box-shadow: var(--shadow); font-size: 14px; line-height: 1.4;
+  }
+  .portrait figcaption strong { display: block; font-weight: 500; color: var(--navy); }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
+  .about-text { font-size: 19px; line-height: 1.7; color: var(--ink-2); max-width: 600px; }
+  .stats { display: grid; gap: 12px; }
+  .stat {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+    padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  }
+  .stat-value { font: 500 24px/1.2 var(--serif); color: var(--navy); font-variant-numeric: tabular-nums; }
+  .stat-label { color: var(--muted); font-size: 14px; text-align: right; }
+
+  /* Cards */
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: var(--shadow);
+    transition: transform .2s var(--ease), border-color .2s var(--ease);
+  }
+  .card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--navy) 25%, var(--line)); }
+
+  /* Projects */
+  .projects { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  .project-feature { display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+  .project-body { padding: 32px; display: flex; flex-direction: column; gap: 20px; }
+  .project-meta { display: flex; flex-wrap: wrap; gap: 8px 16px; color: var(--muted); }
+  .project-meta .featured { color: var(--gold-text); }
+  .project-body h3 { font-size: 28px; line-height: 1.2; }
+  .project-body p { color: var(--ink-2); }
+  .features { display: grid; gap: 8px; }
+  .features li { position: relative; padding-left: 20px; color: var(--ink-2); }
+  .features li::before {
+    content: ""; position: absolute; left: 2px; top: .62em; width: 8px; height: 8px; border-radius: 50%;
+    border: 2px solid var(--gold); background: var(--surface);
+  }
+  .callout {
+    display: grid; gap: 4px; padding: 16px 20px; border-radius: 12px;
+    background: var(--surface-2); border: 1px solid var(--line);
+  }
+  .callout strong { font-weight: 500; color: var(--navy); }
+  .callout span { color: var(--ink-2); font-size: 15px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    display: inline-flex; align-items: center; height: 28px; padding: 0 12px; border-radius: 999px;
+    background: var(--surface-2); border: 1px solid var(--line);
+    font: 400 13px/1 var(--mono); color: var(--ink-2);
+  }
+  .project-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+  .map {
+    background: var(--surface-2); border-left: 1px solid var(--line);
+    display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 32px;
+  }
+  .map svg { width: 100%; height: auto; }
+  .map figcaption { color: var(--muted); font-size: 14px; }
+  .map .m-line { fill: none; stroke: var(--gold); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+  .map .m-branch { fill: none; stroke: var(--navy); stroke-width: 4; stroke-linecap: round; opacity: .85; }
+  .map .m-stop { fill: var(--surface); stroke: var(--navy); stroke-width: 3; }
+  .map .m-hub { fill: var(--surface); stroke: var(--navy); stroke-width: 3; }
+  .map .m-label { font: 500 12px var(--mono); fill: var(--ink-2); }
+  .map .m-label-strong { font: 500 13px var(--sans); fill: var(--navy); }
+  .map .m-grid { stroke: var(--line); stroke-width: 1; }
+  .project-small { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; padding: 32px; align-items: start; }
+  .project-small h3 { font-size: 24px; line-height: 1.25; }
+  .role { display: grid; gap: 4px; }
+  .role strong { font-weight: 500; color: var(--navy); }
+  .role span { color: var(--ink-2); }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .skill-group { padding: 24px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); }
+  .skill-group h3 { font: 500 16px/1.3 var(--sans); color: var(--navy); margin-bottom: 16px; }
+
+  /* Transit timeline */
+  .line-list { position: relative; display: grid; gap: 24px; padding-left: 40px; }
+  .line-list::before {
+    content: ""; position: absolute; left: 11px; top: 12px; bottom: 12px; width: 4px; border-radius: 4px; background: var(--gold);
+  }
+  .line-list.navy::before { background: var(--navy); opacity: .85; }
+  .stop { position: relative; }
+  .stop::before {
+    content: ""; position: absolute; left: -37px; top: 22px; width: 18px; height: 18px; border-radius: 50%;
+    background: var(--bg); border: 3px solid var(--navy);
+  }
+  .stop-card { padding: 24px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); }
+  .stop-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin-bottom: 8px; }
+  .stop-card h3 { font-size: 22px; line-height: 1.3; }
+  .stop-sub { color: var(--ink-2); margin-top: 2px; }
+  .stop-card ul { margin-top: 16px; display: grid; gap: 8px; }
+  .stop-card li { position: relative; padding-left: 16px; color: var(--ink-2); }
+  .stop-card li::before { content: ""; position: absolute; left: 0; top: .72em; width: 6px; height: 2px; background: var(--muted); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+
+  /* Activities */
+  .activities { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .activity { padding: 24px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); display: grid; gap: 8px; align-content: start; }
+  .activity h3 { font-size: 20px; line-height: 1.3; }
+  .activity p { color: var(--ink-2); font-size: 15px; }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .contact h2 { font-size: clamp(36px, 5vw, 56px); line-height: 1.05; letter-spacing: -.02em; }
+  .contact-lead { margin-top: 16px; color: var(--ink-2); max-width: 440px; font-size: 18px; }
+  .contact-email { display: inline-block; margin-top: 28px; font: 400 clamp(20px, 2.6vw, 28px)/1.3 var(--serif); word-break: break-word; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  form { display: grid; gap: 16px; padding: 32px; }
+  label { display: grid; gap: 6px; font-size: 14px; font-weight: 500; color: var(--navy); }
+  input, textarea {
+    width: 100%; padding: 12px 14px; border-radius: 8px; border: 1px solid var(--line);
+    background: var(--bg); color: var(--ink); font: 400 15px/1.5 var(--sans);
+    transition: border-color .15s var(--ease);
+  }
+  input:focus, textarea:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 1px var(--navy); }
+  textarea { resize: vertical; min-height: 128px; }
+  .form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+  .form-note { font-size: 14px; color: var(--muted); }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--line); padding: 32px 0; }
+  footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+  .foot-links { display: flex; align-items: center; gap: 8px; }
+
+  /* Reveal on scroll (only when JS is running) */
+  .js .reveal { opacity: 0; transform: translateY(8px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+  .js .reveal.is-visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .card:hover { transform: none; }
+    * { transition-duration: .01ms !important; }
+  }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .project-feature { grid-template-columns: 1fr; }
+    .map { border-left: 0; border-top: 1px solid var(--line); order: -1; }
+    .skills, .activities { grid-template-columns: 1fr 1fr; }
+    .activities .activity:last-child { grid-column: 1 / -1; }
+  }
+  @media (max-width: 860px) {
+    .nav-links {
+      display: none; position: absolute; top: 64px; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0; padding: 8px 16px 16px;
+      background: var(--bg); border-bottom: 1px solid var(--line);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px; font-size: 16px; }
+    .nav-links a[aria-current="true"]::after { left: 0; right: auto; top: 12px; bottom: 12px; width: 2px; height: auto; }
+    .menu-btn { display: inline-grid; }
+    .hero .wrap, .about-grid, .contact, .two-col, .project-small { grid-template-columns: 1fr; }
+    .portrait { justify-self: start; width: min(100%, 280px); order: -1; }
+    .two-col { gap: 64px; }
+  }
+  @media (max-width: 600px) {
+    .wrap { padding: 0 16px; }
+    section { padding: 64px 0; }
+    .hero { padding: 40px 0 64px; }
+    .sec-head h2 { font-size: 30px; }
+    .hero-role { font-size: 20px; }
+    .hero-lead, .about-text { font-size: 17px; }
+    .skills, .activities { grid-template-columns: 1fr; }
+    .project-body, .project-small, .map, form { padding: 24px; }
+    .stat { padding: 16px 20px; }
+    .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
+  }
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Kan Char Ming, back to top">
+      <span class="brand-mark" aria-hidden="true">KCM</span>
+      <span class="brand-name">Kan Char Ming</span>
+    </a>
+    <div style="display:flex;align-items:center">
+      <nav class="nav-links" id="nav-links" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn theme-btn" id="theme-btn" type="button" aria-label="Switch to dark theme">
+          <svg class="icon moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+        <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div>
+        <p class="hero-kicker mono"><span class="dot" aria-hidden="true"></span>Open to internships</p>
+        <h1 id="hero-title">Kan Char Ming</h1>
+        <p class="hero-role">IT student · Web developer</p>
+        <p class="hero-lead">Building, debugging and solving problems across PHP, JavaScript, Java, Python and Scala.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View projects <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+          <a class="btn btn-secondary" href="assets/Kan-Char-Ming-Resume.pdf" download="Kan-Char-Ming-Resume.pdf"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg> Download resume</a>
+        </div>
+        <div class="hero-social">
+          <a class="icon-btn" href="https://github.com/kcm2204" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a>
+          <a class="icon-btn" href="https://www.linkedin.com/in/kan-char-ming-b55282318" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+          <a class="icon-btn" href="mailto:kancharming@gmail.com" aria-label="Email kancharming@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a>
+        </div>
+      </div>
+      <figure class="portrait" style="margin:0">
+        <img src="assets/headshot.jpg" alt="Portrait of Kan Char Ming" width="580" height="580">
+        <figcaption><strong>Sunway University</strong><span class="muted">Bachelor of IT, CGPA 3.21</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2 id="about-title">About</h2></div>
+      <div class="about-grid">
+        <p class="about-text reveal">I'm an IT student at Sunway University with hands-on programming and web development experience across PHP, JavaScript, Java, Python and Scala. I'm comfortable building, debugging and solving problems on projects and assignments, and I'm eager to grow these skills through internships and real-world work.</p>
+        <div class="stats reveal">
+          <div class="stat"><span class="stat-value">BIT</span><span class="stat-label">Sunway University</span></div>
+          <div class="stat"><span class="stat-value">3.21</span><span class="stat-label">CGPA</span></div>
+          <div class="stat"><span class="stat-value">Jul 2026</span><span class="stat-label">Graduating</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 id="projects-title">Projects</h2>
+        <p>A full-stack web app and a group data-analytics project</p>
+      </div>
+      <div class="projects">
+
+        <article class="card project-feature reveal" aria-labelledby="jobnet-title">
+          <div class="project-body">
+            <div class="project-meta mono"><span class="featured">Featured</span><span>Full-stack web app</span></div>
+            <h3 id="jobnet-title">JobNet – Job Seeking Website</h3>
+            <p>A full-stack job portal for young Malaysians, with separate job seeker, employer and admin accounts and a responsive, transit-map-themed design with dark mode.</p>
+            <ul class="features">
+              <li>Filtered job search</li>
+              <li>PDF resume uploads</li>
+              <li>Interview scheduling</li>
+              <li>Application tracking</li>
+              <li>Job alerts</li>
+            </ul>
+            <div class="callout">
+              <strong>Security</strong>
+              <span>Password hashing, prepared statements and CSRF protection</span>
+            </div>
+            <div class="tags" aria-label="Tech stack">
+              <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">HTML/CSS</span><span class="tag">JavaScript</span>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-secondary btn-sm" href="https://github.com/kcm2204" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg> GitHub</a>
+            </div>
+          </div>
+          <figure class="map" style="margin:0">
+            <svg viewBox="0 0 480 300" role="img" aria-labelledby="map-title map-desc">
+              <title id="map-title">JobNet drawn as a transit line</title>
+              <desc id="map-desc">A gold line runs through five stations, one per feature: job alerts, search, resume upload, tracking and interview. A navy line crosses at the resume station, standing for the three account types.</desc>
+              <g class="m-grid">
+                <line x1="0" y1="60" x2="480" y2="60"/><line x1="0" y1="120" x2="480" y2="120"/><line x1="0" y1="180" x2="480" y2="180"/><line x1="0" y1="240" x2="480" y2="240"/>
+              </g>
+              <path class="m-branch" d="M232 36 V268"/>
+              <path class="m-line" d="M28 236 H148 L196 188 H300 L348 140 H452"/>
+              <circle class="m-stop" cx="44" cy="236" r="8"/>
+              <circle class="m-stop" cx="128" cy="236" r="8"/>
+              <rect class="m-hub" x="216" y="176" width="32" height="24" rx="12"/>
+              <circle class="m-stop" cx="376" cy="140" r="8"/>
+              <circle class="m-stop" cx="444" cy="140" r="11"/>
+              <text class="m-label" x="44" y="266" text-anchor="middle">Alerts</text>
+              <text class="m-label" x="128" y="266" text-anchor="middle">Search</text>
+              <text class="m-label" x="258" y="222">Resume upload</text>
+              <text class="m-label" x="376" y="118" text-anchor="middle">Tracking</text>
+              <text class="m-label" x="452" y="176" text-anchor="end">Interview</text>
+              <text class="m-label-strong" x="246" y="44">Seeker · Employer · Admin</text>
+            </svg>
+            <figcaption>JobNet's features drawn the way the site itself looks: as stops on a line</figcaption>
+          </figure>
+        </article>
+
+        <article class="card project-small reveal" aria-labelledby="ecom-title">
+          <div style="display:grid;gap:16px">
+            <div class="project-meta mono"><span>Group project · 3 people</span><span>PRG2104</span></div>
+            <h3 id="ecom-title">E-Commerce Data Analytics</h3>
+            <p style="color:var(--ink-2)">A group project analyzing e-commerce sales data with Scala's collection API.</p>
+            <div class="tags" aria-label="Tech stack"><span class="tag">Scala</span></div>
+          </div>
+          <div style="display:grid;gap:20px">
+            <div class="role">
+              <strong>My role: Documenter</strong>
+              <span>Wrote the README, the OOP write-up and the AI interaction log, and coordinated the group's submission.</span>
+            </div>
+            <div class="project-actions">
+              <a class="btn btn-secondary btn-sm" href="https://github.com/kcm2204" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg> GitHub</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-title">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2 id="skills-title">Skills</h2></div>
+      <div class="skills">
+        <div class="skill-group reveal">
+          <h3>Web</h3>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Data and databases</h3>
+          <div class="tags"><span class="tag">MySQL</span><span class="tag">SQL</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h3>Programming</h3>
+          <div class="tags"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">Scala</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="experience-title">
+    <div class="wrap two-col">
+      <div>
+        <div class="sec-head reveal"><h2 id="experience-title">Experience</h2></div>
+        <ol class="line-list" style="margin:0">
+          <li class="stop reveal">
+            <div class="stop-card">
+              <div class="stop-top"><span class="mono muted">Apr 2026 – May 2026</span></div>
+              <h3>Marketing Assistant</h3>
+              <p class="stop-sub">Sunbeam Auto Sdn Bhd</p>
+              <ul>
+                <li>Supported the marketing team with social media content and promotional materials</li>
+                <li>Assisted with market research and customer outreach</li>
+                <li>Helped coordinate campaigns to boost brand visibility</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div id="education" role="region" aria-labelledby="education-title">
+        <div class="sec-head reveal"><h2 id="education-title">Education</h2></div>
+        <ol class="line-list navy" style="margin:0">
+          <li class="stop reveal">
+            <div class="stop-card">
+              <div class="stop-top"><span class="mono muted">Sep 2024 – Jul 2026</span><span class="mono" style="color:var(--gold-text)">CGPA 3.21</span></div>
+              <h3>Sunway University</h3>
+              <p class="stop-sub">Bachelor of Information Technology</p>
+            </div>
+          </li>
+          <li class="stop reveal">
+            <div class="stop-card">
+              <div class="stop-top"><span class="mono muted">Feb 2023 – Feb 2024</span></div>
+              <h3>Management &amp; Science University</h3>
+              <p class="stop-sub">Foundation in Law</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities" aria-labelledby="activities-title">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2 id="activities-title">Activities</h2>
+        <p>Volunteering and campus events at MSU</p>
+      </div>
+      <div class="activities">
+        <article class="activity reveal">
+          <span class="mono muted">Feb 2023</span>
+          <h3>Fundraising and campus events</h3>
+          <p>Member in orphanage fundraising (Creamynya &amp; Light of Ramadhan), New MSUrians Engagement Day, CNY Bowling Tournament and the MSU Cybercrime Awareness Talk.</p>
+        </article>
+        <article class="activity reveal">
+          <span class="mono muted">Jul 2023</span>
+          <h3>Conservation and entrepreneurship</h3>
+          <p>Member in the MSU Mangrove Conservation Project, Merdeka Day Celebration, MSU Entrepreneurship Week 2023 and a poster exhibition on Malaysian independence.</p>
+        </article>
+        <article class="activity reveal">
+          <span class="mono muted">Sep 2023</span>
+          <h3>MSU Mooncake Festival</h3>
+          <p>Helped with props and co-organized the MSU Mooncake Festival 2023 at the Performing Arts Theatre.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact">
+      <div class="reveal">
+        <h2 id="contact-title">Let's work together</h2>
+        <p class="contact-lead">I'm open to internship opportunities. If you have a role in mind or want to talk about my projects, get in touch.</p>
+        <a class="contact-email link" href="mailto:kancharming@gmail.com">kancharming@gmail.com</a>
+        <div class="contact-links">
+          <a class="btn btn-secondary" href="https://www.linkedin.com/in/kan-char-ming-b55282318" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg> LinkedIn</a>
+          <a class="btn btn-secondary" href="https://github.com/kcm2204" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg> GitHub</a>
+        </div>
+      </div>
+      <form class="card reveal" id="contact-form" action="mailto:kancharming@gmail.com" method="post" enctype="text/plain" novalidate>
+        <label>Name<input name="name" type="text" autocomplete="name" required maxlength="100"></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+        <label>Message<textarea name="message" required maxlength="1200"></textarea></label>
+        <div class="form-foot">
+          <button class="btn btn-primary" type="submit"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg> Send message</button>
+          <span class="form-note" id="form-note" role="status" aria-live="polite">Opens your email app with the message filled in</span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="muted">© 2026 Kan Char Ming</span>
+    <div class="foot-links">
+      <a class="icon-btn" href="https://github.com/kcm2204" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/kan-char-ming-b55282318" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+      <a class="icon-btn" href="mailto:kancharming@gmail.com" aria-label="Email kancharming@gmail.com"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a>
+      <a class="btn btn-secondary btn-sm" href="#top" style="margin-left:8px"><svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg> Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  // Theme toggle
+  var themeBtn = document.getElementById('theme-btn');
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  function applyTheme(t) {
+    root.setAttribute('data-theme', t);
+    themeBtn.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    if (themeMeta) themeMeta.setAttribute('content', t === 'dark' ? '#0f1522' : '#faf7f2');
+  }
+  applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+  themeBtn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  // Mobile menu
+  var menuBtn = document.getElementById('menu-btn');
+  var links = document.getElementById('nav-links');
+  function setMenu(open) {
+    links.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menuBtn.querySelector('use').setAttribute('href', open ? '#i-close' : '#i-menu');
+  }
+  menuBtn.addEventListener('click', function () { setMenu(!links.classList.contains('open')); });
+  links.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && links.classList.contains('open')) { setMenu(false); menuBtn.focus(); } });
+  var wide = window.matchMedia('(min-width: 861px)');
+  var onWide = function (m) { if (m.matches) setMenu(false); };
+  if (wide.addEventListener) wide.addEventListener('change', onWide); else if (wide.addListener) wide.addListener(onWide);
+
+  // Reveal on scroll
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if ('IntersectionObserver' in window && !reduce) {
+    root.classList.add('js');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-visible'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  }
+
+  // Active section in nav: the section whose top most recently passed 40% of the viewport.
+  // Side-by-side blocks (Experience / Education on desktop) share a top, so the earlier one wins.
+  var spyIds = ['about', 'projects', 'skills', 'experience', 'education', 'activities', 'contact'];
+  // Measure each section's heading, not the section box, so padding doesn't skew side-by-side columns.
+  var spyEls = spyIds.map(function (id) { return document.getElementById(id + '-title'); }).filter(Boolean);
+  var navLinks = links.querySelectorAll('a');
+  var ticking = false;
+  function updateActive() {
+    ticking = false;
+    var line = window.innerHeight * 0.4, current = null, bestTop = -Infinity;
+    spyEls.forEach(function (el) {
+      var top = Math.round(el.getBoundingClientRect().top);
+      if (top <= line && top > bestTop) { bestTop = top; current = el.id.replace('-title', ''); }
+    });
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = 'contact';
+    navLinks.forEach(function (a) {
+      if (a.getAttribute('href') === '#' + current) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(updateActive); } }, { passive: true });
+  window.addEventListener('resize', updateActive);
+  updateActive();
+
+  // Contact form: no server, so hand the message to the visitor's email app
+  var form = document.getElementById('contact-form');
+  var note = document.getElementById('form-note');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = form.elements;
+    ['name', 'email', 'message'].forEach(function (k) { var el = f.namedItem(k); el.value = el.value.trim(); });
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    var name = f.namedItem('name').value;
+    var email = f.namedItem('email').value;
+    var msg = f.namedItem('message').value;
+    var subject = 'Portfolio enquiry from ' + name;
+    var body = msg + '\n\n' + name + '\n' + email;
+    var url = 'mailto:kancharming@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    if (url.length > 1900) {
+      note.textContent = 'That message is too long for an email link. Please shorten it or email kancharming@gmail.com directly.';
+      return;
+    }
+    window.location.href = url;
+    note.textContent = 'Your email app should open now. If it does not, email kancharming@gmail.com directly.';
+  });
+})();
+</script>
+</body>
+</html>
